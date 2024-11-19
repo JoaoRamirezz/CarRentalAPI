@@ -1,10 +1,14 @@
 using System.Xml.Schema;
 using Adapters.Models;
+using Adapters.Repositories;
+using Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 builder.Services.AddDbContext<CarRentalDbContext>(options =>
 {
