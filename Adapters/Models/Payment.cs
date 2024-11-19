@@ -1,0 +1,18 @@
+﻿namespace Adapters.Models;
+
+public partial class Payment
+{
+    public int Id { get; set; }
+
+    public int RentalId { get; set; }
+
+    public DateTime Date { get; set; }
+
+    public decimal? Value { get; set; }
+
+    public string? Method { get; set; }
+
+    public string? Status { get; set; }
+
+    public virtual Rental Rental { get; set; } = null!;
+}
