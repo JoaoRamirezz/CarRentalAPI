@@ -1,4 +1,4 @@
-﻿namespace Adapters.Models;
+﻿namespace Domain.Models;
 
 public partial class Reservation
 {

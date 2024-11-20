@@ -1,4 +1,5 @@
 using Adapters.Models;
+using Domain.Models;
 
 namespace Adapters.Repositories
 {

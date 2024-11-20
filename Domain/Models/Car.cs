@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Adapters.Models;
+namespace Domain.Models;
 
 public partial class Car
 {

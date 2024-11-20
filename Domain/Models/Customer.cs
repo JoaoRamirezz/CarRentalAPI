@@ -1,6 +1,6 @@
-﻿namespace Adapters.Models;
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+namespace Domain.Models;
 
 public partial class Customer
 {
