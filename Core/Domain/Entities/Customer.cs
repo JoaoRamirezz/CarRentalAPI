@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Domain.Models;
+﻿namespace Core.Domain.Entities;
 
 public partial class Customer
 {

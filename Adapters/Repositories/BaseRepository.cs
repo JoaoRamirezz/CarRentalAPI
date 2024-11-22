@@ -1,5 +1,5 @@
 using Adapters.Models;
-using Application.Interfaces;
+using Core.Shared;
 
 namespace Adapters.Repositories
 {

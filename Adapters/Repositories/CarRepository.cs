@@ -1,12 +1,11 @@
-using Adapters.Models;
-using Domain.Models;
+namespace Adapters.Repositories;
 
-namespace Adapters.Repositories
+using Adapters.Models;
+using Core.Domain.Entities;
+
+public class CarRepository : BaseRepository<Car>
 {
-    public class CarRepository : BaseRepository<Car>
+    public CarRepository(CarRentalDbContext context) : base(context)
     {
-        public CarRepository(CarRentalDbContext context) : base(context)
-        {
-        }
     }
 }

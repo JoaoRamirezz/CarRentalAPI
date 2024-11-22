@@ -1,5 +1,4 @@
-﻿namespace Domain.Models;
-
+﻿namespace Core.Domain.Entities;
 public partial class Payment
 {
     public int Id { get; set; }

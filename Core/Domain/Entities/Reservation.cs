@@ -1,5 +1,4 @@
-﻿namespace Domain.Models;
-
+﻿namespace Core.Domain.Entities;
 public partial class Reservation
 {
     public int Id { get; set; }

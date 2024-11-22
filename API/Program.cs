@@ -1,7 +1,6 @@
-using System.Xml.Schema;
 using Adapters.Models;
 using Adapters.Repositories;
-using Application.Interfaces;
+using Core.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
