@@ -10,14 +10,27 @@ public class TestController : ControllerBase
 {
     private readonly IEmployeeRepository _employeeRepository;
 
-    public TestController(IEmployeeRepository employeeRepository)
+    private readonly ICategoryRepository _categoryRepository;
+
+    public TestController(IEmployeeRepository employeeRepository, ICategoryRepository categoryRepository)
     {
         _employeeRepository = employeeRepository;
-    }
+        _categoryRepository = categoryRepository;
+}
 
     [HttpGet]
-    public IQueryable<Employee> GetAll()
+    public IQueryable<Category> GetAll()
     {
-        return _employeeRepository.GetAll();
+        return _categoryRepository.GetAll();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddCategory([FromBody] string name)
+    {
+        var created = await _categoryRepository.Add(new Category { Name = name });
+
+        await this._categoryRepository.SaveChangesAsync();
+
+        return Ok(created);
     }
 }

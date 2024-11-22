@@ -11,6 +11,8 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.HasKey(e => e.Id)
             .HasName("PK__Categori__F353C1E5ACF1952A");
 
+        builder.ToTable("Categoria");
+
         builder.Property(e => e.Id)
             .HasColumnName("CategoriaId");
 

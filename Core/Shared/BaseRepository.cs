@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.Shared
 {
-    public abstract class BaseRepository<T, IDbContext> : IRepository<T>
+    public abstract class BaseRepository<T, TDbContext> : IRepository<T>
         where T : class
-        where IDbContext : DbContext
+        where TDbContext : DbContext
     {
-        protected readonly IDbContext _context;
+        protected readonly TDbContext _context;
 
-        public BaseRepository(IDbContext context)
+        public BaseRepository(TDbContext context)
         {
             _context = context;
         }
