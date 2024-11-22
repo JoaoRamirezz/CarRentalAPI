@@ -1,44 +1,33 @@
-using Application.Interfaces;
-using Application.Managers;
-using Core.Domain.Interfaces;
-using Infrastructure.Adapters.Repositories;
-using Infrastrucute.Persistance;
-using Microsoft.EntityFrameworkCore;
+using Application;
+using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
-
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddScoped<ICarRepository, CarRepository>();
-builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
-builder.Services.AddScoped<IRentalRepository, RentalRepository>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-
-builder.Services.AddScoped<ICategoryManager, CategoryManager>();
-
-builder.Services.AddDbContext<CarRentalDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CarRental"));
-});
+    builder.Services
+        .AddApplication()
+        .AddInfrastructure(builder.Configuration);
+    
+    builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 }
 
-app.UseAuthorization();
+var app = builder.Build();
+{
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-app.MapControllers();
+    app.UseAuthorization();
 
-app.Run();
+    app.UseHttpsRedirection();
 
+    app.MapControllers();
+
+    app.Run();
+}
