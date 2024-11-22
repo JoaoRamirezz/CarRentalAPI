@@ -1,4 +1,5 @@
-using Core.Domain.Entities;
+using Application.Interfaces;
+using Application.Managers;
 using Core.Domain.Interfaces;
 using Infrastructure.Adapters.Repositories;
 using Infrastrucute.Persistance;
@@ -14,6 +15,8 @@ builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IRentalRepository, RentalRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+builder.Services.AddScoped<ICategoryManager, CategoryManager>();
 
 builder.Services.AddDbContext<CarRentalDbContext>(options =>
 {
