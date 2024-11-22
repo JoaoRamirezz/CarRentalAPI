@@ -1,7 +1,7 @@
 ﻿using Adapters.Configurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace Adapters.Models;
+namespace Infrastrucute.Persistance;
 
 public partial class CarRentalDbContext : DbContext
 {

@@ -9,9 +9,9 @@ public partial class Payment
 
     public decimal? Value { get; set; }
 
-    public string? Method { get; set; }
+    public string Method { get; set; }
 
-    public string? Status { get; set; }
+    public string Status { get; set; }
 
     public virtual Rental Rental { get; set; } = null!;
 }

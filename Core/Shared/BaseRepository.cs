@@ -1,14 +1,14 @@
-using Adapters.Models;
-using Core.Shared;
+using Microsoft.EntityFrameworkCore;
 
-namespace Adapters.Repositories
+namespace Core.Shared
 {
-    public abstract class BaseRepository<T> : IRepository<T>
+    public abstract class BaseRepository<T, IDbContext> : IRepository<T>
         where T : class
+        where IDbContext : DbContext
     {
-        protected readonly CarRentalDbContext _context;
+        protected readonly IDbContext _context;
 
-        public BaseRepository(CarRentalDbContext context)
+        public BaseRepository(IDbContext context)
         {
             _context = context;
         }

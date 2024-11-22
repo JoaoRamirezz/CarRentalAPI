@@ -9,7 +9,7 @@ public partial class Employee
 
     public string Role { get; set; } = null!;
 
-    public string? PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 }
