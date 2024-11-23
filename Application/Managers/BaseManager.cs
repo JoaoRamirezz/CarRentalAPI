@@ -5,17 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services;
 
-public abstract class BaseManager<TEntity, TRequest, TResponse> : IManager<TRequest, TResponse>
+public abstract class BaseManager<TEntity, TRequest, TResponse, TRepository> : IManager<TRequest, TResponse>
     where TEntity : class, new()
+    where TRepository : IRepository<TEntity>
 {
-    protected readonly IRepository<TEntity> _repository;
+    protected readonly TRepository _repository;
 
-    public BaseManager(IRepository<TEntity> repository)
+    public BaseManager(TRepository repository)
     {
         _repository = repository;
     }
 
-    public async Task<TResponse> CreateAsync(TRequest request)
+    public virtual async Task<TResponse> CreateAsync(TRequest request)
     {
         var entity = MapToEntity(request);
 
@@ -26,21 +27,21 @@ public abstract class BaseManager<TEntity, TRequest, TResponse> : IManager<TRequ
         return MapToResponse(entity);
     }
 
-    public async Task<IEnumerable<TResponse>> GetAllAsync()
+    public virtual async Task<IEnumerable<TResponse>> GetAllAsync()
     {
         var entities = await _repository.GetAll().ToListAsync();
 
         return entities.Select(MapToResponse);
     }
 
-    public async Task<TResponse> GetByIdAsync(int id)
+    public virtual async Task<TResponse> GetByIdAsync(int id)
     {
         var entity = await _repository.GetById(id) ?? throw DomainExceptions.EntityNotFound(id);
 
         return MapToResponse(entity);
     }
 
-    public async Task<TResponse> UpdateAsync(int id, TRequest request)
+    public virtual async Task<TResponse> UpdateAsync(int id, TRequest request)
     {
         var entity = await _repository.GetById(id) ?? throw DomainExceptions.EntityNotFound(id);
 
@@ -53,7 +54,7 @@ public abstract class BaseManager<TEntity, TRequest, TResponse> : IManager<TRequ
         return MapToResponse(entity);
     }
 
-    public async Task<TResponse> DeleteAsync(int id)
+    public virtual async Task<TResponse> DeleteAsync(int id)
     {
         var entity = await _repository.GetById(id) ?? throw DomainExceptions.EntityNotFound(id);
 

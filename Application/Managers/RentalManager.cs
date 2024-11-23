@@ -2,15 +2,28 @@ using Application.Interfaces;
 using Application.Requests;
 using Application.Services;
 using Core.Domain.Entities;
+using Core.Domain.Exceptions;
 using Core.Domain.Interfaces;
 using Mapster;
 
 namespace Application.Managers;
 
-public class RentalManager : BaseManager<Rental, RentalRequest, RentalResponse>, IRentalManager
+public class RentalManager : BaseManager<Rental, RentalRequest, RentalResponse, IRentalRepository>, IRentalManager
 {
     public RentalManager(IRentalRepository repository) : base(repository)
     {
+    }
+
+    public override Task<RentalResponse> CreateAsync(RentalRequest request)
+    {
+        bool available = _repository.IsCarAvailableAsync(request.CarId, request.WithdrawalDate, request.DevolutionDate).Result;
+
+        if (!available)
+        {
+            throw DomainExceptions.CarAlreadyReserved();
+        }
+
+        return base.CreateAsync(request);
     }
 
     protected override Rental MapToEntity(RentalRequest request)

@@ -7,7 +7,7 @@ using Mapster;
 
 namespace Application.Managers;
 
-public class CustomerManager : BaseManager<Customer, CustomerRequest, CustomerResponse>, ICustomerManager
+public class CustomerManager : BaseManager<Customer, CustomerRequest, CustomerResponse, ICustomerRepository>, ICustomerManager
 {
     public CustomerManager(ICustomerRepository repository) : base(repository)
     {

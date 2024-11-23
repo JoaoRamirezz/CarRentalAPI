@@ -7,7 +7,7 @@ using Mapster;
 
 namespace Application.Managers;
 
-public class ReservationManager : BaseManager<Reservation, ReservationRequest, ReservationResponse>, IReservationManager
+public class ReservationManager : BaseManager<Reservation, ReservationRequest, ReservationResponse, IReservationRepository>, IReservationManager
 {
     public ReservationManager(IReservationRepository repository) : base(repository)
     {

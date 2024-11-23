@@ -7,7 +7,7 @@ using Mapster;
 
 namespace Application.Managers;
 
-public class CarManager : BaseManager<Car, CarRequest, CarResponse>, ICarManager
+public class CarManager : BaseManager<Car, CarRequest, CarResponse, ICarRepository>, ICarManager
 {
     public CarManager(ICarRepository repository) : base(repository)
     {

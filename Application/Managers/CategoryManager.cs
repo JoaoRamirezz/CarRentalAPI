@@ -6,7 +6,7 @@ using Core.Domain.Interfaces;
 
 namespace Application.Managers;
 
-public class CategoryManager : BaseManager<Category, CategoryRequest, CategoryResponse>, ICategoryManager
+public class CategoryManager : BaseManager<Category, CategoryRequest, CategoryResponse, ICategoryRepository>, ICategoryManager
 {
     public CategoryManager(ICategoryRepository repository) : base(repository)
     {

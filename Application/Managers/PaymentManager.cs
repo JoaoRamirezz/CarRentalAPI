@@ -7,7 +7,7 @@ using Mapster;
 
 namespace Application.Managers;
 
-public class PaymentManager : BaseManager<Payment, PaymentRequest, PaymentResponse>, IPaymentManager
+public class PaymentManager : BaseManager<Payment, PaymentRequest, PaymentResponse, IPaymentRepository>, IPaymentManager
 {
     public PaymentManager(IPaymentRepository repository) : base(repository)
     {

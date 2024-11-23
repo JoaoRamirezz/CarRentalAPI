@@ -7,7 +7,7 @@ using Mapster;
 
 namespace Application.Managers;
 
-public class EmployeeManager : BaseManager<Employee, EmployeeRequest, EmployeeResponse>, IEmployeeManager
+public class EmployeeManager : BaseManager<Employee, EmployeeRequest, EmployeeResponse, IEmployeeRepository>, IEmployeeManager
 {
     public EmployeeManager(IEmployeeRepository repository) : base(repository)
     {

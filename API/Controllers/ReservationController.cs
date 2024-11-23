@@ -1,5 +1,4 @@
 using Application.Interfaces;
-using Application.Managers;
 using Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 

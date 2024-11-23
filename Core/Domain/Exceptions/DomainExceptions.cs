@@ -11,6 +11,8 @@ public static class DomainExceptions
     public static InvalidEntityStateException InvalidEntityState(string message) => new(message);
 
     public static InvalidPlateException InvalidPlate() => new("License Plate out of format: AAA-0000");
+
+    public static CarAlreadyReservedException CarAlreadyReserved() => new("Car is already reserved for this period");
 }
 
 public class DomainException(string message) : Exception(message);
@@ -24,3 +26,5 @@ public class InvalidEntityException(string message) : DomainException(message);
 public class InvalidEntityStateException(string message) : DomainException(message);
 
 public class InvalidPlateException(string message) : DomainException(message);
+
+public class CarAlreadyReservedException(string message) : DomainException(message);
