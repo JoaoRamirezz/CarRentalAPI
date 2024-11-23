@@ -1,6 +1,8 @@
-﻿namespace Core.Domain.Entities;
+﻿using Core.Shared;
 
-public partial class Payment
+namespace Core.Domain.Entities;
+
+public partial class Payment : IEntity
 {
     public int Id { get; set; }
 
@@ -15,4 +17,8 @@ public partial class Payment
     public string Status { get; set; }
 
     public virtual Rental Rental { get; set; } = null!;
+
+    public void Validate()
+    {
+    }
 }

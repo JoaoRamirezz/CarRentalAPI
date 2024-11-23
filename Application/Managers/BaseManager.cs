@@ -3,10 +3,10 @@ using Core.Domain.Exceptions;
 using Core.Shared;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Services;
+namespace Application.Managers;
 
 public abstract class BaseManager<TEntity, TRequest, TResponse, TRepository> : IManager<TRequest, TResponse>
-    where TEntity : class, new()
+    where TEntity : class, IEntity
     where TRepository : IRepository<TEntity>
 {
     protected readonly TRepository _repository;
@@ -19,6 +19,8 @@ public abstract class BaseManager<TEntity, TRequest, TResponse, TRepository> : I
     public virtual async Task<TResponse> CreateAsync(TRequest request)
     {
         var entity = MapToEntity(request);
+
+        entity.Validate();
 
         await _repository.Add(entity);
 
@@ -46,6 +48,8 @@ public abstract class BaseManager<TEntity, TRequest, TResponse, TRepository> : I
         var entity = await _repository.GetById(id) ?? throw DomainExceptions.EntityNotFound(id);
 
         UpdateEntity(entity, request);
+
+        entity.Validate();
 
         await _repository.Update(entity);
 

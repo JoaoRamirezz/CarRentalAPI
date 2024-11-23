@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Core.Shared
 {
     public abstract class BaseRepository<T, TDbContext> : IRepository<T>
-        where T : class
+        where T : class, IEntity
         where TDbContext : DbContext
     {
         protected readonly TDbContext _context;

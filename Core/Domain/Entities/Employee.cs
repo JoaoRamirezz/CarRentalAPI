@@ -1,6 +1,8 @@
-﻿namespace Core.Domain.Entities;
+﻿using Core.Shared;
 
-public partial class Employee
+namespace Core.Domain.Entities;
+
+public partial class Employee : IEntity
 {
     public int Id { get; set; }
 
@@ -13,4 +15,8 @@ public partial class Employee
     public string PhoneNumber { get; set; }
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
+
+    public void Validate()
+    {
+    }
 }

@@ -1,7 +1,7 @@
 namespace Core.Shared;
 
 public interface IRepository<T>
-    where T : class
+    where T : class, IEntity
 {
     public IQueryable<T> GetAll();
 

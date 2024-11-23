@@ -1,6 +1,8 @@
-﻿namespace Core.Domain.Entities;
+﻿using Core.Shared;
 
-public partial class Reservation
+namespace Core.Domain.Entities;
+
+public partial class Reservation : IEntity
 {
     public int Id { get; set; }
 
@@ -19,4 +21,8 @@ public partial class Reservation
     public virtual Customer Customer { get; set; } = null!;
 
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
+
+    public void Validate()
+    {
+    }
 }
