@@ -1,7 +1,7 @@
 using Core.Domain.Entities;
 using Core.Domain.Exceptions;
 
-namespace Tests;
+namespace Tests.UnitTests;
 
 public class CarValidationTests
 {
@@ -25,7 +25,7 @@ public class CarValidationTests
             Year = 1885,
             CategoryId = 0,
             Model = string.Empty
-            
+
         };
 
         Assert.Throws<InvalidEntityException>(() => car.Validate());

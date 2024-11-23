@@ -16,6 +16,9 @@ public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
         builder.Property(e => e.Id)
             .HasColumnName("PagamentoId");
 
+        builder.Property(e => e.RentalId)
+            .HasColumnName("LocacaoId");
+
         builder.Property(e => e.Date)
             .HasColumnName("Data")
             .HasColumnType("datetime");

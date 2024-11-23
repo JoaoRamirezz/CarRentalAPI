@@ -16,8 +16,17 @@ public class RentalConfiguration : IEntityTypeConfiguration<Rental>
         builder.Property(x => x.Id)
             .HasColumnName("LocacaoId");
 
+        builder.Property(x => x.CustomerId)
+            .HasColumnName("ClienteId");
+
+        builder.Property(x => x.EmployeeId)
+            .HasColumnName("FuncionarioId");    
+
         builder.Property(e => e.CarId)
             .HasColumnName("Carro_id");
+
+        builder.Property(e => e.ReservationId)
+            .HasColumnName("ReservaId");
 
         builder.Property(e => e.DevolutionDate)
             .HasColumnName("DataDevolucao")

@@ -16,7 +16,10 @@ public class ReservationConfiguration : IEntityTypeConfiguration<Reservation>
             .HasColumnName("ReservaId");
 
         builder.Property(e => e.CarId)
-            .HasColumnName("CarroId");
+            .HasColumnName("Carro_Id");
+
+        builder.Property(e => e.ClientId)
+            .HasColumnName("ClienteId");
 
         builder.Property(e => e.EndDate)
             .HasColumnType("datetime")

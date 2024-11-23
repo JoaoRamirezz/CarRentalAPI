@@ -11,6 +11,11 @@ public static class DependencyInjection
     {
         services.AddScoped<ICategoryManager, CategoryManager>();
         services.AddScoped<ICarManager, CarManager>();
+        services.AddScoped<ICustomerManager, CustomerManager>();
+        services.AddScoped<IEmployeeManager, EmployeeManager>();
+        services.AddScoped<IPaymentManager, PaymentManager>();
+        services.AddScoped<IRentalManager, RentalManager>();
+        services.AddScoped<IReservationManager, ReservationManager>();
         
         TypeAdapterConfig.GlobalSettings.Default.IgnoreNullValues(true);
 
