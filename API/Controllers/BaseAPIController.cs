@@ -42,8 +42,8 @@ public abstract class BaseAPIController<TManager, TRequest, TResponse> : Control
         return Ok(result);
     }
 
-    [HttpPatch("{id}")]
-    public async Task<ActionResult<TResponse>> Patch(int id, TRequest request)
+    [HttpPut("{id}")]
+    public async Task<ActionResult<TResponse>> Put(int id, TRequest request)
     {
         try
         {

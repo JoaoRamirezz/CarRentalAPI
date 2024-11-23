@@ -1,6 +1,10 @@
-﻿namespace Core.Domain.Entities;
+﻿using System.Text.RegularExpressions;
+using Core.Domain.Exceptions;
+using Core.Shared;
 
-public partial class Car
+namespace Core.Domain.Entities;
+
+public partial class Car : IEntity
 {
     public int Id { get; set; }
 
@@ -19,4 +23,24 @@ public partial class Car
     public virtual ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 
     public virtual ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
+
+    public void Validate()
+    {
+        if (!IsPlateValid()) 
+        {
+            throw DomainExceptions.InvalidPlate();
+        }
+
+        if (string.IsNullOrEmpty(this.Model) || string.IsNullOrEmpty(this.Manufacturer) || CategoryId == 0 || Year < 1900)
+        {
+            throw DomainExceptions.InvalidEntity("Invalid Car Entity");
+        }
+    }
+
+    public bool IsPlateValid()
+    {
+        //// 3 letras - 4 digitos
+        var platePattern = new Regex(@"^[aA-zZ]{3}-[0-9]{4}");
+        return platePattern.IsMatch(this.LicensePlate);
+    }
 }
