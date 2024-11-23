@@ -34,6 +34,11 @@ public class CarConfiguration : IEntityTypeConfiguration<Car>
             .HasMaxLength(7)
             .IsUnicode(false);
 
+        builder.Property(e => e.Year)
+            .HasColumnName("Ano")
+            .HasMaxLength(7)
+            .IsUnicode(false);
+
         builder.HasOne(d => d.Category).WithMany(p => p.Cars)
             .HasForeignKey(d => d.CategoryId)
             .OnDelete(DeleteBehavior.ClientSetNull)
