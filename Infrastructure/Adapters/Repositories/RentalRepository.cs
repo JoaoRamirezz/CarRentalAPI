@@ -16,8 +16,7 @@ public class RentalRepository : BaseRepository<Rental, CarRentalDbContext>, IRen
 
     public async Task<bool> IsCarAvailableAsync(int carId, DateTime startDate, DateTime endDate)
     {
-          var available = !await GetAll()
-            .Include(r => r.Car)
+        var available = !await GetAll()
             .Where(r => r.CarId == carId)
             .AnyAsync(r => r.WithdrawalDate <= startDate && r.DevolutionDate >= startDate || r.WithdrawalDate <= endDate && r.DevolutionDate >= endDate);
         

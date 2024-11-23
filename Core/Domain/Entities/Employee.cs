@@ -1,4 +1,5 @@
 ﻿namespace Core.Domain.Entities;
+
 public partial class Employee
 {
     public int Id { get; set; }

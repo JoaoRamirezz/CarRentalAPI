@@ -1,4 +1,5 @@
 ﻿namespace Core.Domain.Entities;
+
 public partial class Rental
 {
     public int Id { get; set; }
