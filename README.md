@@ -16,3 +16,27 @@ Diagramas de Classe e Entidade Relacionamento
 Repositório do GitHub contendo o código fonte completo (commits serão considerados para critério de avaliação conforme acordado em sala de aula)
 Testes unitários (40%)
 Documentação no README do repositório
+
+### Atualizar appsettings.json
+```
+"ConnectionStrings": {
+    "Main": "Data Source=<<Nome do Servidor/Máquina>>\\SQLEXPRESS;Database=CarRental;Integrated Security=true;TrustServerCertificate=True;"
+},
+```
+
+### Atualizar EF tool:
+```
+dotnet tool update --global dotnet-ef --version 9.0.0
+```
+
+### Atualizar Tabelas:
+
+```
+dotnet ef database update --startup-project ./API --project ./Infrastructure
+```
+
+### Rodar Swagger:
+
+```
+dotnet watch --project API
+```

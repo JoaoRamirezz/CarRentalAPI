@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Adapters.Migrations
+namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class CreateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace Adapters.Migrations
                 {
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
+                    Nome = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,8 +30,8 @@ namespace Adapters.Migrations
                 {
                     ClienteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    Cpf = table.Column<string>(type: "varchar(11)", unicode: false, maxLength: 11, nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    Cpf = table.Column<string>(type: "varchar(11)", unicode: false, maxLength: 11, nullable: true),
                     Endereco = table.Column<string>(type: "varchar(150)", unicode: false, maxLength: 150, nullable: true),
                     Telefone = table.Column<string>(type: "varchar(15)", unicode: false, maxLength: 15, nullable: true),
                     Email = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true)
@@ -47,9 +47,9 @@ namespace Adapters.Migrations
                 {
                     FuncionarioId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    Cpf = table.Column<string>(type: "varchar(11)", unicode: false, maxLength: 11, nullable: false),
-                    Cargo = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    Cpf = table.Column<string>(type: "varchar(11)", unicode: false, maxLength: 11, nullable: true),
+                    Cargo = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     Telefone = table.Column<string>(type: "varchar(15)", unicode: false, maxLength: 15, nullable: true)
                 },
                 constraints: table =>
@@ -64,10 +64,10 @@ namespace Adapters.Migrations
                     Carro_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoriaId = table.Column<int>(type: "int", nullable: false),
-                    Placa = table.Column<string>(type: "varchar(7)", unicode: false, maxLength: 7, nullable: false),
-                    Modelo = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    Fabricante = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    Ano = table.Column<int>(type: "int", nullable: false)
+                    Placa = table.Column<string>(type: "varchar(7)", unicode: false, maxLength: 7, nullable: true),
+                    Modelo = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    Fabricante = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    Ano = table.Column<int>(type: "int", unicode: false, maxLength: 7, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,17 +86,17 @@ namespace Adapters.Migrations
                     ReservaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
-                    Carro_id = table.Column<int>(type: "int", nullable: false),
+                    Carro_Id = table.Column<int>(type: "int", nullable: false),
                     Data_inicio = table.Column<DateTime>(type: "datetime", nullable: false),
                     Data_fim = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Status = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: false)
+                    Status = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK__Reserva__C399376365B93271", x => x.ReservaId);
                     table.ForeignKey(
                         name: "FK__Reserva__Carro_i__534D60F1",
-                        column: x => x.Carro_id,
+                        column: x => x.Carro_Id,
                         principalTable: "Carro",
                         principalColumn: "Carro_id");
                     table.ForeignKey(
@@ -110,7 +110,7 @@ namespace Adapters.Migrations
                 name: "Locacao",
                 columns: table => new
                 {
-                    Locacaoid = table.Column<int>(type: "int", nullable: false)
+                    LocacaoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReservaId = table.Column<int>(type: "int", nullable: false),
                     ClienteId = table.Column<int>(type: "int", nullable: false),
@@ -119,11 +119,11 @@ namespace Adapters.Migrations
                     DataRetirada = table.Column<DateTime>(type: "datetime", nullable: false),
                     DataDevolucao = table.Column<DateTime>(type: "datetime", nullable: false),
                     ValorTotal = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    Status = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: false)
+                    Status = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Locacao__31DA8772AB53BD5A", x => x.Locacaoid);
+                    table.PrimaryKey("PK__Locacao__31DA8772AB53BD5A", x => x.LocacaoId);
                     table.ForeignKey(
                         name: "FK__Locacao__Carro_i__5812160E",
                         column: x => x.Carro_id,
@@ -165,7 +165,7 @@ namespace Adapters.Migrations
                         name: "FK__Pagamento__Locac__5BE2A6F2",
                         column: x => x.LocacaoId,
                         principalTable: "Locacao",
-                        principalColumn: "Locacaoid");
+                        principalColumn: "LocacaoId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -199,9 +199,9 @@ namespace Adapters.Migrations
                 column: "LocacaoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reserva_Carro_id",
+                name: "IX_Reserva_Carro_Id",
                 table: "Reserva",
-                column: "Carro_id");
+                column: "Carro_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reserva_ClienteId",
