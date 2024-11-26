@@ -1,6 +1,7 @@
 using Application.Interfaces;
 using Application.Requests;
 using Core.Domain.Entities;
+using Core.Domain.Exceptions;
 using Core.Domain.Interfaces;
 using Mapster;
 
@@ -10,6 +11,18 @@ public class ReservationManager : BaseManager<Reservation, ReservationRequest, R
 {
     public ReservationManager(IReservationRepository repository) : base(repository)
     {
+    }
+
+    public override async Task<ReservationResponse> CreateAsync(ReservationRequest request)
+    {
+        var available = await  _repository.IsCarAvailableAsync(request.CarId, request.StartDate, request.EndDate);
+
+        if (!available)
+        {
+            throw DomainExceptions.CarAlreadyReserved();
+        }
+
+        return await base.CreateAsync(request);
     }
 
     protected override Reservation MapToEntity(ReservationRequest request)

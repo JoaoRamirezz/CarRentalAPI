@@ -15,13 +15,6 @@ public class RentalManager : BaseManager<Rental, RentalRequest, RentalResponse, 
 
     public override Task<RentalResponse> CreateAsync(RentalRequest request)
     {
-        bool available = _repository.IsCarAvailableAsync(request.CarId, request.WithdrawalDate, request.DevolutionDate).Result;
-
-        if (!available)
-        {
-            throw DomainExceptions.CarAlreadyReserved();
-        }
-
         return base.CreateAsync(request);
     }
 

@@ -13,13 +13,4 @@ public class RentalRepository : BaseRepository<Rental, CarRentalDbContext>, IRen
     public RentalRepository(CarRentalDbContext context) : base(context)
     {
     }
-
-    public async Task<bool> IsCarAvailableAsync(int carId, DateTime startDate, DateTime endDate)
-    {
-        var available = !await GetAll()
-            .Where(r => r.CarId == carId)
-            .AnyAsync(r => r.WithdrawalDate <= startDate && r.DevolutionDate >= startDate || r.WithdrawalDate <= endDate && r.DevolutionDate >= endDate);
-        
-        return available;
-    }
 }
