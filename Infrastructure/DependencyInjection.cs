@@ -11,8 +11,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        var connectionString = configuration.GetConnectionString("Main");
+
         services.AddDbContext<CarRentalDbContext>(options =>
-            options.UseSqlServer(configuration["CarRental:ConnectionString"]));
+            options.UseSqlServer(connectionString));
 
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<ICarRepository, CarRepository>();
