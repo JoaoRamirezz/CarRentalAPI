@@ -104,9 +104,9 @@ namespace Infrastructure.Migrations
                         .HasColumnName("Endereco");
 
                     b.Property<string>("Cpf")
-                        .HasMaxLength(11)
+                        .HasMaxLength(15)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(100)
@@ -141,9 +141,9 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Cpf")
-                        .HasMaxLength(11)
+                        .HasMaxLength(15)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("varchar(15)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(100)

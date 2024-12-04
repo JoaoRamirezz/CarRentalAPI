@@ -16,7 +16,7 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             .HasColumnName("ClienteId");
 
         builder.Property(e => e.Cpf)
-            .HasMaxLength(11)
+            .HasMaxLength(15)
             .IsUnicode(false);
 
         builder.Property(e => e.Email)
