@@ -40,7 +40,7 @@ public partial class Car : IEntity
     public bool IsPlateValid()
     {
         //// 3 letras - 4 digitos
-        var platePattern = new Regex(@"^[aA-zZ]{3}-[0-9]{3}");
+        var platePattern = new Regex(@"^[aA-zZ]{3}-[0-9]{4}");
         return platePattern.IsMatch(this.LicensePlate);
     }
 }

@@ -31,7 +31,7 @@ public class CarConfiguration : IEntityTypeConfiguration<Car>
 
         builder.Property(e => e.LicensePlate)
             .HasColumnName("Placa")
-            .HasMaxLength(7)
+            .HasMaxLength(8)
             .IsUnicode(false);
 
         builder.Property(e => e.Year)
